@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        maven {
+            name = "gradlePlugins"
+            url = "https://plugins.gradle.org/m2/"
+        }
+
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION")
+    }
+}
+
+apply plugin: "org.jetbrains.kotlin.multiplatform"
+
+repositories {
+    jcenter()
+}
+
+kotlin {
+    jvm()
+}
+
+dependencies {
+    commonMainImplementation "org.jetbrains.kotlin:kotlin-stdlib-common:$KOTLIN_VERSION"
+
+    commonTestImplementation "org.jetbrains.kotlin:kotlin-test-common:$KOTLIN_VERSION"
+    commonTestImplementation "org.jetbrains.kotlin:kotlin-test-annotations-common:$KOTLIN_VERSION"
+
+    jvmMainImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$KOTLIN_VERSION"
+
+    jvmTestImplementation "org.junit.jupiter:junit-jupiter:$JUNIT5_VERSION"
+    jvmTestImplementation "org.jetbrains.kotlin:kotlin-test:$KOTLIN_VERSION"
+    jvmTestImplementation "org.jetbrains.kotlin:kotlin-test-junit5:$KOTLIN_VERSION"
+}
+
+jvmTest {
+    useJUnitPlatform()
+    
+    doFirst {
+        println "reports.junitXml.enabled = ${reports.junitXml.enabled}"
+    }
+}
