@@ -1,5 +1,7 @@
 # Kotlin Sample: allTests task disables junitXml generation
 
+This is a sample to illustrate problem report <https://youtrack.jetbrains.com/issue/KT-35202>.
+
 ## Behavior with Kotlin 1.3.61
 
 `allTests` task runs `jvmTest` but does not respect the `reports.junitXml.enabled` property. 
